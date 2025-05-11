@@ -1,13 +1,12 @@
-
 import Events from "../../components/events/Events";
 import Hero from "../../components/hero/Hero";
 import Ranking from "../../components/ranking/Ranking";
-import NewSwiper from "../../components/swiper/NewSwiper";
+import Swiper from "../../components/swiper/Swiper";
 
 export const Home = () => {
   return (
     <div className="min-h-screen">
-      <NewSwiper
+      <Swiper
         sections={[
           { component: <Hero /> },
           { component: <Events /> },

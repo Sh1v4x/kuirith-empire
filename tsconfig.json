@@ -1,18 +1,23 @@
 {
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx",
     "strict": true,
-    "composite": true,
-    "outDir": "./dist",
-    "rootDir": ".",
     "noEmit": true,
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "baseUrl": "./src",
     "paths": {
       "*": ["types/*"]
     }
   },
-  "files": [],
+  "include": ["src"],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }

@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
+import Login from "../../components/login/Login";
+import Signup from "../../components/signup/Signup";
+import DiscordAuth from "../../components/discordAuth/DiscordAuth";
 
 interface NavbarProps {
   logoUrl?: string;
@@ -16,6 +19,10 @@ const Navbar: React.FC<NavbarProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState<boolean>(false);
+  const [isDiscordAuthModalOpen, setIsDiscordAuthModalOpen] =
+    useState<boolean>(false);
 
   const testFunction = () => {
     console.log(`testFunction : ${isConnected}`);
@@ -68,6 +75,18 @@ const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <div className=" ">
+      <Login
+        isModalOpen={isLoginModalOpen}
+        setModalOpen={setIsLoginModalOpen}
+      />
+      <Signup
+        isModalOpen={isSignupModalOpen}
+        setModalOpen={setIsSignupModalOpen}
+      />
+      <DiscordAuth
+        isModalOpen={isDiscordAuthModalOpen}
+        setModalOpen={setIsDiscordAuthModalOpen}
+      />
       <nav className="relative px-4 py-4 flex justify-between items-center text-primary">
         <a className="text-3xl font-bold leading-none" href="#">
           Kuirith Empire
@@ -158,13 +177,14 @@ const Navbar: React.FC<NavbarProps> = ({
               <a
                 className="lg:ml-auto lg:mr-3 py-2 px-6 bg-background hover:bg-accent text-sm text-primary font-bold rounded-xl transition duration-200"
                 href="#"
-                onClick={testFunction}
+                onClick={() => setIsLoginModalOpen(true)}
               >
                 Sign In
               </a>
               <a
                 className="py-2 px-6 bg-secondary hover:bg-accent text-sm text-background font-bold rounded-xl transition duration-200"
                 href="#"
+                onClick={() => setIsSignupModalOpen(true)}
               >
                 Sign up
               </a>
@@ -327,13 +347,14 @@ const Navbar: React.FC<NavbarProps> = ({
                   <a
                     className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold bg-background hover:bg-accent text-primary rounded-xl"
                     href="#"
-                    onClick={testFunction}
+                    onClick={() => setIsLoginModalOpen(true)}
                   >
                     Sign in
                   </a>
                   <a
                     className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-background font-semibold bg-secondary hover:bg-accent rounded-xl"
                     href="#"
+                    onClick={() => setIsSignupModalOpen(true)}
                   >
                     Sign Up
                   </a>
