@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FaGlobe } from "react-icons/fa";
 import { useTranslation } from "../../hooks/useTranslation";
 

@@ -18,7 +18,7 @@ export default function FullpageSwiper({ sections }: { sections: Section[] }) {
         mousewheel
         pagination={{
           clickable: true,
-          renderBullet: (index, className) => {
+          renderBullet: (className) => {
             return `<span class="${className}"></span>`;
           },
         }}

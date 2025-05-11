@@ -7,7 +7,6 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({
-  logoUrl,
   menuItems = [
     { name: "Home", url: "/" },
     { name: "Shop", url: "/shop" },

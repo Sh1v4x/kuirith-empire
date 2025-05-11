@@ -9,8 +9,11 @@ import axios from "axios"
 function App() {
 
   useEffect(() => {
-    const response = axios.get(``)
-    console.log(response.data)
+    async function fetchData() {
+      const response = await axios.get(``);
+      console.log(response.data);
+    }
+    fetchData();
   }, []);
 
   return (

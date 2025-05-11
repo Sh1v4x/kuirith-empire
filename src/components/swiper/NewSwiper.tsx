@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
 
+declare global {
+  interface Window {
+    lastScrollTime?: number;
+  }
+}
+
 interface Section {
   component: React.ReactNode;
 }
@@ -7,7 +13,7 @@ interface Section {
 export default function NewSwiper({ sections }: { sections: Section[] }) {
   const [currentSection, setCurrentSection] = useState(0);
 
-  const handleScroll = (direction) => {
+  const handleScroll = (direction: string) => {
     if (direction === "down" && currentSection < sections.length - 1) {
       setCurrentSection(currentSection + 1);
     } else if (direction === "up" && currentSection > 0) {
@@ -16,7 +22,7 @@ export default function NewSwiper({ sections }: { sections: Section[] }) {
   };
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: { key: string; }) => {
       if (e.key === "ArrowDown") {
         handleScroll("down");
       } else if (e.key === "ArrowUp") {

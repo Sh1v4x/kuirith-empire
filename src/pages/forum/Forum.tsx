@@ -53,7 +53,6 @@ export default function Forum() {
   const handlePost = () => {
     if (!newPost.trim()) return;
 
-    let mediaUrl = mediaPreview;
     let mediaType: "image" | "video" | undefined;
 
     if (mediaFile) {
@@ -66,7 +65,7 @@ export default function Forum() {
       id: Date.now(),
       content: newPost,
       tag: selectedTag,
-      mediaUrl,
+      mediaUrl: mediaPreview || undefined,
       mediaType,
       createdAt: Date.now(),
       user: {
