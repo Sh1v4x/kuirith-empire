@@ -1,0 +1,19 @@
+import { useState } from "react";
+import { FaGlobe } from "react-icons/fa";
+import { useTranslation } from "../../hooks/useTranslation";
+
+export default function LanguageSwitcher({ className = "" }) {
+  const { language, cycleLanguage, t } = useTranslation();
+
+  return (
+    <button
+      onClick={cycleLanguage}
+      className={`p-2 rounded-full flex items-center gap-1 transition-all duration-300 ${className}`}
+      aria-label={t("language.select")}
+      title={t("language.select")}
+    >
+      <FaGlobe />
+      <span className="text-xs">{language.toUpperCase()}</span>
+    </button>
+  );
+}

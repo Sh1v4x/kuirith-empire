@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "noEmit": false,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["types/*"]
+    }
+  },
+  "include": ["src"],
+  "files": [],
+
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
