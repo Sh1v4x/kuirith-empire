@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  avatar             String
+  consecutive_daily  Int
+  created_at         DateTime      @default(now())
+  discord_username   String        @unique
+  gp                 Int
+  is_account_created Boolean
+  is_admin           Boolean
+  last_daily         DateTime
+  level              Int
+  password           String
+  role               String
+  username           String
+  xp                 Int
+  id                 Int           @id @default(autoincrement())
+  Code               Code[]
+  Order              Order[]
+  Post               Post[]
+  PostComment        PostComment[]
+  PostLike           PostLike[]
+  UserSuccess        UserSuccess[]
+}
+
+model Success {
+  id        Int    @id @default(autoincrement())
+  code      String
+  xp_reward Int
+  icon      String
+}
+
+model UserSuccess {
+  id         Int  @id @default(autoincrement())
+  user_id    Int
+  success_id Int
+  user       User @relation(fields: [user_id], references: [id])
+}
+
+model Post {
+  id           Int           @id @default(autoincrement())
+  title        String
+  content      String
+  content_type String
+  created_at   DateTime
+  user_id      Int
+  user         User          @relation(fields: [user_id], references: [id])
+  PostComment  PostComment[]
+  PostLike     PostLike[]
+  PostTags     PostTags[]
+}
+
+model Tag {
+  id       Int        @id @default(autoincrement())
+  code     String
+  PostTags PostTags[]
+}
+
+model PostTags {
+  post_id Int
+  tag_id  Int
+  post    Post @relation(fields: [post_id], references: [id])
+  tag     Tag  @relation(fields: [tag_id], references: [id])
+
+  @@id([post_id, tag_id])
+}
+
+model PostLike {
+  post_id Int
+  user_id Int
+  post    Post @relation(fields: [post_id], references: [id])
+  user    User @relation(fields: [user_id], references: [id])
+
+  @@id([post_id, user_id])
+}
+
+model PostComment {
+  id         Int      @id @default(autoincrement())
+  post_id    Int
+  user_id    Int
+  content    String
+  created_at DateTime
+  post       Post     @relation(fields: [post_id], references: [id])
+  user       User     @relation(fields: [user_id], references: [id])
+}
+
+model Item {
+  id                        Int           @id @default(autoincrement())
+  name_fr                   String
+  name_en                   String
+  description_fr            String
+  description_en            String
+  price                     Int
+  icon                      String
+  source                    String
+  rarity_fr                 String
+  rarity_en                 String
+  presentation_content_type String
+  presentation              String
+  is_deleted                Boolean
+  CatalogItem               CatalogItem[]
+  Order                     Order[]
+}
+
+model Catalog {
+  id          Int           @id @default(autoincrement())
+  name_fr     String
+  name_en     String
+  date        DateTime
+  is_active   Boolean
+  CatalogItem CatalogItem[]
+}
+
+model CatalogItem {
+  catalog_id Int
+  item_id    Int
+  catalog    Catalog @relation(fields: [catalog_id], references: [id])
+  item       Item    @relation(fields: [item_id], references: [id])
+
+  @@id([catalog_id, item_id])
+}
+
+model Order {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  item_id    Int
+  created_at DateTime
+  state      String
+  item       Item     @relation(fields: [item_id], references: [id])
+  user       User     @relation(fields: [user_id], references: [id])
+}
+
+model Code {
+  id         Int      @id @default(autoincrement())
+  code       String
+  user_id    Int
+  created_at DateTime
+  user       User     @relation(fields: [user_id], references: [id])
+}
