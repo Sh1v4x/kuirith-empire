@@ -1,0 +1,9 @@
+{
+  "models": [
+    {
+      "title": "CodeLlama",
+      "provider": "ollama",
+      "model": "codellama:7b"
+    }
+  ]
+}
